@@ -14,10 +14,13 @@ This pipeline consolidates two high signal RSS feeds into a single Discord chann
 
 ## Architecture
 
-BleepingComputer RSS  ──►  Make (Scenario 1) ──►  Discord Webhook  ──►  Discord Channel
-
-The Record RSS ──►  Make (Scenario 2) ──►  Discord Webhook  ──►  Discord Channel
-
+```mermaid
+flowchart LR
+    A[BleepingComputer RSS] --> C[Make Scenario]
+    B[The Record RSS] --> C
+    C --> D[Discord Webhook]
+    D --> E[Discord Channel]
+```
 
 Two independent Make scenarios poll their respective RSS feeds on a 15 minute interval. On detection of a new item, each scenario extracts the article title, URL, and publication timestamp, then delivers a formatted message to a Discord channel via webhook.
 
